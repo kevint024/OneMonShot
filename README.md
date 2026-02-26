@@ -39,7 +39,7 @@ OneMonShot is a lightweight Windows application that makes taking screenshots of
 ### Option 1: Portable Package (Recommended)
 1. **Download** the latest `OneMonShot-Portable.zip` from [Releases](../../releases)
 2. **Extract** to any folder on your computer
-3. **Run** `OneMonShot.bat` to launch the application
+3. **Run** `OneMonShot.exe` to launch the application
 4. **Start taking screenshots!**
 
 ### Option 2: Build from Source
