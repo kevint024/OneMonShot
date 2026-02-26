@@ -135,31 +135,6 @@ OneMonShot/
 dotnet build --configuration Debug
 ```
 
-### Testing Checklist
-- [ ] All monitors detected correctly
-- [ ] Screenshots capture full resolution
-- [ ] Custom save locations work
-- [ ] File naming variables substitute properly  
-- [ ] Settings persist between sessions
-- [ ] Auto-open File Explorer toggles correctly
-
-## 🤝 Contributing
-
-We welcome contributions from the community! Whether it's bug fixes, new features, or documentation improvements, your help makes OneMonShot better for everyone.
-
-### Quick Contribution Guide
-1. **Fork** this repository
-2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Make** your changes following our [coding guidelines](CONTRIBUTING.md)
-4. **Test** thoroughly on Windows
-5. **Submit** a pull request with detailed description
-
-See our [Contributing Guide](CONTRIBUTING.md) for detailed information.
-
-### Areas for Contribution
-- 🔥 **High Priority**: Performance optimizations, additional image formats (JPEG, BMP), hotkey support
-- 📈 **Medium Priority**: System tray functionality, screenshot annotation, cloud storage integration  
-- 💡 **Ideas Welcome**: Dark theme, multi-language support, advanced editing features
 
 ## 📊 Version History
 
