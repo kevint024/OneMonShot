@@ -1,0 +1,111 @@
+name: Build and Release OneMonShot
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build application
+      run: dotnet build --configuration Release --no-restore
+      
+    - name: Test application (if tests exist)
+      run: dotnet test --configuration Release --no-build --verbosity normal
+      continue-on-error: true
+      
+    - name: Create portable package
+      run: |
+        powershell -ExecutionPolicy Bypass -File "scripts/create-package.ps1"
+        
+    - name: Create distribution ZIP
+      run: |
+        powershell -ExecutionPolicy Bypass -File "scripts/create-zip.ps1" 
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: OneMonShot-Build-${{ github.run_number }}
+        path: |
+          OneMonShot-Portable.zip
+          OneMonShot-Portable/
+          bin/Release/
+        retention-days: 30
+        
+  release:
+    needs: build
+    runs-on: windows-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+        
+    - name: Build release package
+      run: |
+        dotnet restore
+        dotnet build --configuration Release --no-restore
+        powershell -ExecutionPolicy Bypass -File "scripts/create-package.ps1"
+        powershell -ExecutionPolicy Bypass -File "scripts/create-zip.ps1"
+        
+    - name: Get version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+      
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          OneMonShot-Portable.zip
+        name: OneMonShot ${{ steps.get_version.outputs.VERSION }}
+        body: |
+          ## OneMonShot ${{ steps.get_version.outputs.VERSION }}
+          
+          ### 📦 Download and Installation
+          1. Download `OneMonShot-Portable.zip` below
+          2. Extract to any folder
+          3. Run `OneMonShot.bat`
+          
+          ### ✨ Features
+          - Multi-monitor screenshot capture
+          - Custom save locations and file naming
+          - Live preview and batch operations
+          - Auto-open File Explorer toggle
+          - Portable - no installation required
+          
+          ### 📋 Requirements
+          - Windows 10 or later
+          - .NET 8 Desktop Runtime (auto-installed guidance provided)
+          
+          ### 🆕 What's New
+          See [CHANGELOG.md](CHANGELOG.md) for detailed changes.
+          
+          ---
+          
+          **Full Changelog**: https://github.com/${{ github.repository }}/compare/v1.0.0...${{ steps.get_version.outputs.VERSION }}
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

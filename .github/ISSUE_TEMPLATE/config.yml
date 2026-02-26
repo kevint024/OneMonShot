@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Community Discussions
+    url: https://github.com/yourusername/OneMonShot/discussions
+    about: Ask questions, share ideas, and discuss with the community
+  - name: 🚀 Feature Requests & Ideas
+    url: https://github.com/yourusername/OneMonShot/discussions/categories/ideas
+    about: Propose new features and enhancements
+  - name: 📚 General Support & Help
+    url: https://github.com/yourusername/OneMonShot/discussions/categories/q-a
+    about: Get help using OneMonShot or troubleshooting issues
