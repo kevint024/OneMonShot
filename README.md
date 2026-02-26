@@ -2,7 +2,6 @@
 
 > **Simple, powerful multi-monitor screenshot tool for Windows**
 
-[![Build Status](https://github.com/kevint024/OneMonShot/actions/workflows/build-and-release.yml/badge.svg)](https://github.com/kevint024/OneMonShot/actions)
 [![Downloads](https://img.shields.io/github/downloads/kevint024/OneMonShot/total.svg)](https://github.com/kevint024/OneMonShot/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![.NET](https://img.shields.io/badge/.NET-8.0-blue.svg)](https://dotnet.microsoft.com/download/dotnet/8.0)
