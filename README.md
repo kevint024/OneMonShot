@@ -45,7 +45,7 @@ OneMonShot is a lightweight Windows application that makes taking screenshots of
 ### Option 2: Build from Source
 ```powershell
 # Prerequisites: .NET 8 SDK
-git clone https://github.com/yourusername/OneMonShot.git
+git clone https://github.com/kevint024/OneMonShot.git
 cd OneMonShot
 .\build.ps1
 .\run.ps1
@@ -158,7 +158,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
-- Built with ❤️ using .NET 8 and Windows Forms
+- Built with ❤️ using .NET
 - Inspired by the need for simple, reliable multi-monitor screenshot tools
 - Built with *help* from Claude Sonnet
 
@@ -170,13 +170,11 @@ If OneMonShot helps streamline your workflow:
 - 💡 **Suggest features** for future development
 - 🤝 **Contribute code** to make it even better
 - 📢 **Share with others** who could benefit
-
 ---
 
 <div align="center">
 
 **[Download Latest Release](../../releases) • [View Documentation](docs/) • [Report Issue](../../issues) • [Contribute](CONTRIBUTING.md)**
 
-Made with 💻 for the Windows community
 
 </div>
